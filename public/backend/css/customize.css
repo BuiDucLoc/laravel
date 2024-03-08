@@ -1,0 +1,51 @@
+.mg_top{margin-top: 10px;color: red;font-size: 12px;font-style: italic;}
+.ibox-title h5{text-transform: uppercase;}
+.img-cover{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+table strong{
+    min-width: 100px;
+    display: inline-block;
+}
+.table>tbody>tr>td,.table>tbody>tr>th,.table>tfoot>tr>td,.table>tfoot>tr>th,.table>thead>tr>td,.table>thead>tr>th{vertical-align: middle;}
+.w-100{width: 100%;}
+.h-50{
+    height: 30px;
+    line-height: 30px;
+    padding: 0px 10px;
+}
+.flex{
+    display: flex;
+}
+.form-control1{
+   height: 30px;
+   width: 200px; 
+}
+.input-group-btn button{
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color:rgb(28 181 150);
+    width: 100px;
+    border:none;
+    color:#fff
+}
+.slect_opt{
+    width: 300px;
+    margin-right: auto;
+}
+
+.btn{
+    height: 30px;
+    line-height: 30px;
+    padding: 0px 10px;
+}
+.mgl-10{
+    margin-left: 10px;
+}
+.mgb-20{
+    margin-bottom: 20px;
+}
