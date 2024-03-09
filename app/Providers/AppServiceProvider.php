@@ -8,12 +8,19 @@ use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
+    public $serviceBinding = [
+        'App\Services\Interfaces\UserServiceInterface' => 'App\Services\UserService',
+        'App\Repositories\Interfaces\UserRepositoryInterface' => 'App\Repositories\UserRepository',
+
+    ];
     /**
      * Register any application services.
      */
     public function register(): void
     {
-        //
+        foreach ($this->serviceBinding as $key => $val) {
+            $this->app->bind($key,$val);
+        }
     }
 
     /**

@@ -5,6 +5,10 @@
 <script src="backend/library/library.js"></script>
 
 
+<!-- Custom and plugin javascript -->
+<script src="backend/js/inspinia.js"></script>
+<script src="backend/js/plugins/pace/pace.min.js"></script>
+
 
 <!-- jQuery UI -->
 <script src="backend/js/plugins/jquery-ui/jquery-ui.min.js"></script>

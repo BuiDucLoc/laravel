@@ -13,15 +13,16 @@
         </tr>
     </thead>
     <tbody>
-        @for($i = 0; $i <=20 ;$i++)
+        @if(isset($users) && is_object($users))
+        @foreach ($users as $user)
         <tr>
             <th>
                 <input type="checkbox" value="" id="checkAll" class="input-checkbox checkBoxItem">
             </th>
-            <td>Bùi Đức Lộc</td>
-            <td>loc@gmail.com </td>
-            <td>0326151234456</td>
-            <td>Tây vinh, Tây sơn, Bình Định</td>
+            <td>{{$user->name}}</td>
+            <td>{{$user->email}}</td>
+            <td>{{$user->phone}}</td>
+            <td>{{$user->address}}</td>
             <td class="text-center">
                 <input type="checkbox" class="js-switch" checked="" data-switchery="true" style="">
             </td>
@@ -30,6 +31,8 @@
                 <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
             </td>
         </tr>
-        @endfor
+        @endforeach            
+        @endisset
     </tbody>
 </table>
+{{ $users->links('pagination::bootstrap-4') }}
