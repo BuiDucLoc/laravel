@@ -6,9 +6,9 @@
 <body>
     <div id="wrapper">
         @include('backend.dashboard.component.sidebar')
+
         <div id="page-wrapper" class="gray-bg">
             @include('backend.dashboard.component.nav')
-            
             {{-- begin_content --}}
             @include($templade)
             {{-- end_content --}}

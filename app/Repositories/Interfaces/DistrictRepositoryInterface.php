@@ -6,8 +6,7 @@ namespace App\Repositories\Interfaces;
  * Interface UserServiceInterface
  * @package App\Services\Interfaces
  */
-interface UserRepositoryInterface
+interface DistrictRepositoryInterface
 {
-    public function getAllPaginate();
-
+    public function findByCondition(int $proid);
 }
