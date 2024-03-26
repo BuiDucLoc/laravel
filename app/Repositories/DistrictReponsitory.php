@@ -9,7 +9,7 @@ use App\Repositories\Interfaces\DistrictRepositoryInterface;
  * Class UserService
  * @package App\Services
  */
-class DistrictReponsitory implements DistrictRepositoryInterface
+class DistrictReponsitory extends BaseRepository  implements DistrictRepositoryInterface
 {   
     protected $model;
     

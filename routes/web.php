@@ -8,9 +8,6 @@ use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\Ajax\LocationController;
 
 
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,6 +28,7 @@ Route::get('dashboard/index', [DashboardController::class , 'index'])->name('das
 Route::prefix('user')->group(function () {
     Route::get('index', [UserController::class , 'index'])->name('user.index')->middleware('dashboard');
     Route::get('create', [UserController::class , 'create'])->name('user.create')->middleware('dashboard');
+    Route::post('store', [UserController::class , 'store'])->name('user.store')->middleware('dashboard');
 });
 
 // ajjax

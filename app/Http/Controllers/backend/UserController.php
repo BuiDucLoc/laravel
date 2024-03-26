@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 //dăt tên UserService thay cho UserServiceInterface;
 use App\Services\Interfaces\UserServiceInterface as UserService;
 use App\Repositories\Interfaces\ProviceRepositoryInterface as ProviceRepository;
-
+use App\Http\Requests\StoreUserRequest;
 
 class UserController extends Controller
 {
@@ -45,11 +45,20 @@ class UserController extends Controller
             'js' => [
                     'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js',
                     'backend/library/location.js',
+                        // 'backend/plugin/ckfinder/ckfinder.js',
+                        // 'backend/library/finder.js',
                 ]
         ];
         $config['seo'] = config('apps.user');
         $templade = 'backend.user.create';
         return view('backend.dashboard.layout', compact('templade','config','province'));
+    }
+
+    public function store(StoreUserRequest $request){
+        if($this->userService->creates($request)){
+            return redirect()->route('user.index')->with('success','Thêm thành viên thành công');
+        }
+        return redirect()->route('user.index')->with('error','Thêm thành viên thất bại');
     }
 
 }
