@@ -8,6 +8,5 @@ namespace App\Repositories\Interfaces;
  */
 interface UserRepositoryInterface
 {
-    public function getAllPaginate();
 
 }

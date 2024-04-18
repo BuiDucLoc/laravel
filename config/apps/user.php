@@ -6,5 +6,8 @@ return [
     ],
     'create' => [
         'title' => 'Thêm mới thành viên',
+    ],
+    'delete' => [
+        'title' => 'Xóa thành viên',
     ]
 ];

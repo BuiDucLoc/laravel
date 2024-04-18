@@ -26,12 +26,23 @@ Route::get('dashboard/index', [DashboardController::class , 'index'])->name('das
 
 
 Route::prefix('user')->group(function () {
+    //get
     Route::get('index', [UserController::class , 'index'])->name('user.index')->middleware('dashboard');
+
+    //create(láy được form tạo và submit form)
     Route::get('create', [UserController::class , 'create'])->name('user.create')->middleware('dashboard');
     Route::post('store', [UserController::class , 'store'])->name('user.store')->middleware('dashboard');
+
+    //edit(put/patch)
+    Route::get('{id}/edit', [UserController::class , 'edit'])->name('user.edit')->where('id', '[0-9]+')->middleware('dashboard');
+    Route::post('{id}/update', [UserController::class , 'update'])->name('user.update')->where('id', '[0-9]+')->middleware('dashboard');
+
+    Route::get('{id}/delete', [UserController::class , 'delete'])->name('user.delete')->where('id', '[0-9]+')->middleware('dashboard');
+    Route::post('{id}/destroy', [UserController::class , 'destroy'])->name('user.destroy')->where('id', '[0-9]+')->middleware('dashboard');
+
 });
 
-// ajjax
+// ajax
 Route::get('ajax/location/getLocation', [LocationController::class , 'getLocation'])->name('ajax.location.index')->middleware('dashboard');
 
 
