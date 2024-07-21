@@ -31,11 +31,17 @@ class UserController extends Controller
 
     }
 
-    public function index(){
-        $users = $this->userService->paginate();
+    public function index(Request $request){
+        $users = $this->userService->paginate($request);
         $config =  [
-            'js' => ['backend/js/plugins/switchery/switchery.js'],
-            'css' => ['backend/css/plugins/switchery/switchery.css']
+            'js' => [
+                        'backend/js/plugins/switchery/switchery.js',
+                        'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js'
+                    ],
+            'css' => [
+                        'backend/css/plugins/switchery/switchery.css',
+                        'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css'
+                    ]
         ];
         $config['seo'] = config('apps.user');
         $templade = 'backend.user.index';

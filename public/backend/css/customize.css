@@ -93,3 +93,4 @@ table strong{
 input[type=radio].form-control{
     height:21px;
 }
+.active-bg{background-color: #ffc!important;}

@@ -6,17 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 class BaseRepository implements BaseRepositoryInterface
 {
     protected $model;
-    
-    public function __constructt(Model $model){
+    public function __construct(Model $model){
         $this->model = $model;
     }
 
-    public function pagination(array $column = ['*'], array $condition = [],  array $join = [] , int $perpage = 20){
-        $query = $this->model->select($column)->where($condition);
+    public function pagination(array $column = ['*'], array $condition = [],  array $join = [] ,  array $extend = [] , $perpage){
+        $query = $this->model->select($column)->where(function($query1) use ($condition){
+            //chu ý muôn lấy dược biến condition từ ngoài vào trong này thì phải use $conđition mới sử dụng được
+            if(isset($condition['keyword']) && !empty($condition['keyword'])){
+                $query1->where('name', 'LIKE', '%'.$condition['keyword'].'%');
+            }
+        });
         if(!empty($join)){
             $query->join(... $join);
         }
-        return $query->paginate($perpage);
+        //hàm widthQueryString lấy tất cả ? đằng sau url theo khi bấm phân trang
+        return $query->paginate($perpage)->withQueryString()->withPath(env('APP_URL').$extend['path']);
     }
 
     public function create(array $payload = []){
@@ -27,6 +32,10 @@ class BaseRepository implements BaseRepositoryInterface
     public function update(int $id = 0  , array $payload = []){
         $model = $this->findById($id);
         return $model->update($payload);
+    }
+
+    public function updateBywhereIn(array $id = []  , array $payload = []){
+        return $this->model->whereIn('id', $id)->update($payload);
     }
 
     //xoa mem

@@ -19,10 +19,16 @@ class UserService implements UserServiceInterface
     public function __construct(UserRepository $userRepository){
         $this->userRepository = $userRepository;
     }
-    public function paginate(){
+    public function paginate($request){
+        $condition['keyword'] = addslashes($request->input('keyword'));
+        $perpage = $request->integer('perpage');
         // ham nafy laf return User::paginate(15);
-       $user = $this->userRepository->pagination(['id', 'name', 'email', 'phone', 'address' , 'publish']);
+       $user = $this->userRepository->pagination($this->selectpaginate(), $condition, [],  ['path' => 'user/index'] , $perpage);
        return  $user;
+    }
+
+    private function selectpaginate(){
+        return ['id', 'name', 'email', 'phone', 'address' , 'publish'];
     }
 
     public function creates( $request){
@@ -54,6 +60,39 @@ class UserService implements UserServiceInterface
                 $payload['birthday'] = $this->convertBirthdayDate($payload['birthday']);
             }
             $user = $this->userRepository->update($id, $payload);
+            DB::commit();
+            return true;
+        }catch(\Exception $e ){
+            DB::rollBack();
+            // Log::error($e->getMessage());
+            echo $e->getMessage();die();
+            return false;
+        }
+    }
+
+    public function updateStatus($post=[]){
+        DB::beginTransaction();
+        try{
+            //hamexcept loai bo cac truong nay ra
+            $payload[$post['field']] = ($post['value'] == 1) ? 0 : 1 ;
+            $user = $this->userRepository->update($post['modelid'], $payload);
+            DB::commit();
+            return true;
+        }catch(\Exception $e ){
+            DB::rollBack();
+            // Log::error($e->getMessage());
+            echo $e->getMessage();die();
+            return false;
+        }
+    }
+
+
+    public function updateStatusAll($post=[]){
+        DB::beginTransaction();
+        try{
+            //hamexcept loai bo cac truong nay ra
+            $payload[$post['field']] = ($post['value']);
+            $user = $this->userRepository->updateBywhereIn($post['modelid'], $payload);
             DB::commit();
             return true;
         }catch(\Exception $e ){
