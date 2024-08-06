@@ -7,9 +7,21 @@
                 <option value="1000">100 Bảng ghi</option>
             </select>
             <div class="action flex ">
+                <?php
+                    $publish = request('user_catalog_publish') ?: old('user_catalog_publish');
+                ?>
+                <select name="user_catalog_publish" class="w-100 h-50 setupSelect2" >
+                    @foreach (config('apps.general.publish') as $key => $val )
+                        <option  {{ 
+                            ($publish==$key) ? 'selected' : '' 
+                            }} value="{{$key}}" >{{$val}}</option>
+                    @endforeach
+                </select>
                 <select name="user_catalog_id" class="w-100 h-50 setupSelect2" >
                     <option value="">Chọn nhóm thành viên</option>
-                    <option value="1">Quảng trị viên</option>
+                    <option value="1" {{ 
+                        (request('user_catalog_id')==1) ? 'selected' : '' 
+                        }}>Quảng trị viên</option>
                 </select>
                 <div class="d-flex mgl-10">
                     <div class="input-group">

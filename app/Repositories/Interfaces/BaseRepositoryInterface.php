@@ -13,7 +13,7 @@ interface BaseRepositoryInterface
     public function all();
     public function findById(int $id);
     public function delete(int $id = 0);
-    public function pagination(array $column = ['*'], array $condition = [],  array $join = [] , array $extend = [] , int $perpage  );
+    public function pagination(array $column = ['*'], array $condition = [],  array $join = [] , array $extend = [] , int $perpage , array $relations = []);
     public function updateBywhereIn(array $id = [], array $payload = []);
 
 }

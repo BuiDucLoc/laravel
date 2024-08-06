@@ -44,7 +44,7 @@ class UserController extends Controller
                     ]
         ];
         $config['seo'] = config('apps.user');
-        $templade = 'backend.user.index';
+        $templade = 'backend.user.user.index';
         return view('backend.dashboard.layout', compact('templade','config','users'));
     }
 
@@ -61,7 +61,7 @@ class UserController extends Controller
         ];
         $config['seo'] = config('apps.user');
         $config['method'] = 'create';
-        $templade = 'backend.user.store';
+        $templade = 'backend.user.user.store';
         return view('backend.dashboard.layout', compact('templade','config','province'));
     }
 
@@ -86,7 +86,7 @@ class UserController extends Controller
         ];
         $config['seo'] = config('apps.user');
         $config['method'] = 'edit';
-        $templade = 'backend.user.store';
+        $templade = 'backend.user.user.store';
         return view('backend.dashboard.layout', compact('templade','config','province','user'));
     }
 
@@ -100,7 +100,7 @@ class UserController extends Controller
     public function delete($id){
         $user = $this->userRepository->findById($id);
         $config['seo'] = config('apps.user');
-        $templade = 'backend.user.delete';
+        $templade = 'backend.user.user.delete';
         return view('backend.dashboard.layout', compact('templade','config','user'));
     }
 

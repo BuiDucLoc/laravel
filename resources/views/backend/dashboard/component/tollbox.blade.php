@@ -6,9 +6,9 @@
         <i class="fa fa-wrench"></i>
     </a>
     <ul class="dropdown-menu dropdown-user">
-        <li><a class="ChangeStatusAll" data-feild = 'publish' data-model="User" data-value="1">ChangeStatusAll On</a>
+        <li><a class="ChangeStatusAll" data-feild = 'publish' data-model="{{$model}}" data-value="2">ChangeStatusAll On</a>
         </li>
-        <li><a class="ChangeStatusAll" data-feild = 'publish' data-model="User" data-value="0">ChangeStatusAll Off</a>
+        <li><a class="ChangeStatusAll" data-feild = 'publish' data-model="{{$model}}" data-value="1">ChangeStatusAll Off</a>
         </li>
     </ul>
     <a class="close-link">

@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //lenh thêm 1 trương mới user_cattalog_id vào bảng usser
         Schema::table('users', function (Blueprint $table) {
-            $table->bigInteger('user_catalogue_id')->defautl(2);
+            $table->foreign('user_catalogue_id')->references('id')->on('user_catalogues');
         });
     }
 
@@ -22,9 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //lenh xoa đi bản usercataloiue khi roolback về lạc
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('user_catalogue_id');
+            $table->dropForeign(['user_catalogue_id']);
         });
     }
 };

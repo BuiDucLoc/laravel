@@ -10,13 +10,24 @@ class BaseRepository implements BaseRepositoryInterface
         $this->model = $model;
     }
 
-    public function pagination(array $column = ['*'], array $condition = [],  array $join = [] ,  array $extend = [] , $perpage){
+    public function pagination(array $column = ['*'], array $condition = [],  array $join = [] ,  array $extend = [] , $perpage , array $relations = []){
         $query = $this->model->select($column)->where(function($query1) use ($condition){
             //chu ý muôn lấy dược biến condition từ ngoài vào trong này thì phải use $conđition mới sử dụng được
             if(isset($condition['keyword']) && !empty($condition['keyword'])){
                 $query1->where('name', 'LIKE', '%'.$condition['keyword'].'%');
             }
+
+            if(isset($condition['publish']) && ($condition['publish'] != 0)){
+                $query1->where('publish', '=', $condition['publish']);
+            }
         });
+        
+        if(isset($relations) && !empty($relations)){
+            foreach($relations as $relation){
+                $query->withCount($relation);
+            }
+        }
+
         if(!empty($join)){
             $query->join(... $join);
         }

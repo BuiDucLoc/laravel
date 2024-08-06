@@ -24,7 +24,7 @@
             <td>{{$user->phone}}</td>
             <td>{{$user->address}}</td>
             <td class="text-center js-switch-{{$user->id}}">
-                <input type="checkbox" class="js-switch status " data-feild='publish' data-model='User' value="{{$user->publish}}" {{($user->publish == 1) ? 'checked' : ''}} data-modelid="{{$user->id}}"  >
+                <input type="checkbox" class="js-switch status " data-feild='publish' data-model='User' value="{{$user->publish}}" {{($user->publish == 2) ? 'checked' : ''}} data-modelid="{{$user->id}}"  >
             </td>
             <td class="text-center">
                 <a href="{{route('user.edit', $user->id)}}" class="btn btn-success"><i class="fa fa-edit"></i></a>
